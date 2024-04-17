@@ -15,6 +15,7 @@ services:
       - "443:443"
     depends_on:
       - wordpress
+    restart: always
 
   mariadb:
     container_name: mariadb
@@ -26,8 +27,7 @@ services:
     env_file: ./.env
     volumes:
       - "DB:/var/lib/mysql"
-    expose:
-      - 3306
+    restart: always
 
   wordpress:
     container_name: wordpress
@@ -41,6 +41,28 @@ services:
       - "WordPress:/var/www/wordpress"
     depends_on:
       - mariadb
+    restart: always
+
+  adminer:
+    container_name: adminer
+    build:
+      context: ./requirements/bonus/adminer
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      -  my_network
+    restart: always
+
+  website:
+    container_name: website
+    build:
+      context: ./requirements/bonus/static_website
+      dockerfile: Dockerfile
+    ports:
+      - "8899:8899"
+    restart: always
+
 
 networks:
   my_network:

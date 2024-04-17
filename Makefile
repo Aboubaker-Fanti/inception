@@ -2,10 +2,10 @@ all: up
 
 
 up: build
-	docker compose up -d
+	docker compose -f srcs/docker-compose.yaml up -d
 
 build:
-	docker compose build
+	docker compose -f srcs/docker-compose.yaml build
 
 down:
-	docker compose down -v
+	docker compose -f srcs/docker-compose.yaml down 

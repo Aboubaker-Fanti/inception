@@ -21,6 +21,10 @@ if [ ! -f "wp-config.php" ]; then
 
 # Create additional user
     wp user create "$WP_USR" "$WP_EMAIL" --role=author --user_pass="$WP_PWD" --allow-root
+
+# install wordpress theme 
+    wp theme install inspiro --activate --allow-root
+
 fi
 
 exec /usr/sbin/php-fpm7.4 -F

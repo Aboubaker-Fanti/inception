@@ -1,0 +1,10 @@
+FROM debian:bullseye
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    php-cli \
+    php-mysql
+
+RUN mkdir /adminer  && wget "https://www.adminer.org/latest.php" -O /adminer/index.php
+
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "/adminer"]

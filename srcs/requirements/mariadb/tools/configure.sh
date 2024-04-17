@@ -10,4 +10,4 @@ mysql -e "GRANT ALL PRIVILEGES ON $SQL_DATABASE.* TO $SQL_USER@'%' IDENTIFIED BY
 mysql -e "FLUSH PRIVILEGES;"
 service mariadb stop
 
-mysqld_safe --bind-address=0.0.0.0
+exec mysqld_safe --bind-address=0.0.0.0
